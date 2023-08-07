@@ -22,7 +22,7 @@ def about_us_event(event):
 
 這裡有股票油價等生活經濟資訊唷!
 請直接點選下方連結選單''', emojis = emoji)
-    sticker_message = StickerMessage(
+    sticker_message = StickerSendMessage(
         package_id = '8522',
         sticker_id='16581271'
     )
