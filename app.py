@@ -56,7 +56,7 @@ def handle_message(event):
     )
 
     line_bot_api.reply_message(
-        event.replay_token, 
+        event.reply_token, 
         [text_message, sticker_message])
 
 if __name__ == "__main__":
