@@ -40,8 +40,22 @@ def handle_message(event):
             TextSendMessage(text = content)
         )
 
+@handler.add(FollowEvent)
+def handle_follow(event):
+    welcome_msg = '''$ stock block_oil $
+您好! 歡迎成為 stock block_oil的好友!
+我是您的股市小幫手
 
+這裡有股票油價等生活經濟資訊唷!
+請直接點選下方連結選單'''
+    line_bot_api.reply_message(
+        event.reply_token, 
+        TextSendMessage(text = welcome_msg)
+    )
 
+@handler.add(UnfollowEvent)
+def handle_unfollow(event):
+    print(event)
 
 
     # if event.message.text == "@小幫手":
