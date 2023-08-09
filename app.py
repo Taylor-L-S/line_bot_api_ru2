@@ -1,6 +1,7 @@
 from line_bot_api import *
 from events.basic import *
 from events.oil import *
+from events.EXRate import *
 from events.Msg_Template import *
 from model.mongodb import *
 import re #爬蟲模組
@@ -51,10 +52,6 @@ def handle_message(event):
         )
 
 
-    ###################### 股票區 #####################################
-    if re.match('匯率查詢', emsg):
-        message = show_Button()
-        line_bot_api.reply_message(event.reply_token, message)
     ###################### 股票區 #####################################
     if event.message.text == '@股價查詢':
         line_bot_api.push_message(uid, TextSendMessage("請輸入#加股票代碼......"))
@@ -111,11 +108,15 @@ def handle_message(event):
             event.reply_token, 
             TextSendMessage(text=content)
         )
+    ###################### 匯率區 #####################################
+    if re.match('匯率查詢', emsg):
+        message = show_Button()
+        line_bot_api.reply_message(event.reply_token, message)
 
-
-
-
-
+    if re.match("換匯[A-Z]{3}/[A-Z{3}]", msg):
+        line_bot_api.push_message(uid, TextSendMessage("將為您做換匯計算..."))
+        content = getEcxhangeRate(msg)
+        line_bot_api.push_message(uid, TextSendMessage(content))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
