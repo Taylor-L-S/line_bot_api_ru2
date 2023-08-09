@@ -1,3 +1,4 @@
+
 import requests
 
 
@@ -26,7 +27,7 @@ def getCurrencyName(currency):
     except: return "無可支援的外幣"
     return currency_name
 
-def getEcxhangeRate(msg):
+def getExchangeRate(msg):
     """
     sample
     code = '換匯USD/TWD/100';
