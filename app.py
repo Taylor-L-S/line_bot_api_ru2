@@ -107,7 +107,7 @@ def handle_message(event):
         )
 
 ###################### 股票區 #####################################
-    if re.match('幣別種類', emsg):
+    if re.match('匯率查詢', emsg):
         message = show_Button()
         line_bot_api.reply_message(Event.reply_token, message)
 
