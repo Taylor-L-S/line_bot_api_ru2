@@ -34,6 +34,6 @@ def write_my_stock(userID, user_name, stockNumber, condition, target_price):
             "condition": condition,
             "price": target_price,
             "tag":"stock",
-            "date_info": datetime.now()
+            "date_info": datetime.datetime.now()
         })
     return f"{stockNumber}已新增至您的股票清單"
