@@ -28,7 +28,6 @@ def getCurrencyName(currency):
     return currency_name
 
 # def getExchangeRate(msg):
-#     """
 #     sample
 #     code = '換匯USD/TWD/100';
 #     code = '換匯USD/JPY/100'
@@ -46,11 +45,6 @@ def getCurrencyName(currency):
 #     content+= str('%.2f' % (amount * float(money_value))) + " " + currency1
 #     return content
 def getExchangeRate(msg):#不圖貨幣直接換算(非只限於台幣)
-    """
-    sample
-    code = "換匯USD/TWD/100;
-    code = '換匯USD/JPY/100'
-    """
     currency_list = msg[2:].split('/')
     currency = currency_list[0] # 輸入想查詢的匯率
     currency1 = currency_list[1] #輸入想兌換的匯率

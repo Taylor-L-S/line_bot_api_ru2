@@ -36,6 +36,18 @@ def handle_message(event):
     emsg = event.message.text
     user_name = profile.display_name
     
+
+    ###################### 匯率區 #####################################
+    if re.match('匯率查詢', emsg):
+        message = show_Button()
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if re.match("換匯[A-Z]{3}/[A-Z{3}]", msg):
+        line_bot_api.push_message(uid, TextSendMessage("將為您做換匯計算..."))
+        content = getExchangeRate(msg)
+        line_bot_api.push_message(uid, TextSendMessage(content))
+
+
     ##################### 說明選單 選單 ################################
 
     if message_text == "@使用說明":
@@ -69,9 +81,9 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage("加入股票代號"+stockNumber))
         content = write_my_stock(uid, user_name, stockNumber,msg[6:7], msg[7:])
         line_bot_api.push_message(uid, TextSendMessage(content))
-    else:
-        content = write_my_stock(uid, user_name, stockNumber, "未設定", "未設定")
-        line_bot_api.push_message(uid, TextSendMessage(content))
+    # else:
+    #     content = write_my_stock(uid, user_name, stockNumber, "未設定", "未設定")
+    #     line_bot_api.push_message(uid, TextSendMessage(content))
         return 0
     
     if (emsg.startswith('#')):
@@ -108,15 +120,7 @@ def handle_message(event):
             event.reply_token, 
             TextSendMessage(text=content)
         )
-    ###################### 匯率區 #####################################
-    if re.match('匯率查詢', emsg):
-        message = show_Button()
-        line_bot_api.reply_message(event.reply_token, message)
 
-    if re.match("換匯[A-Z]{3}/[A-Z{3}]", msg):
-        line_bot_api.push_message(uid, TextSendMessage("將為您做換匯計算..."))
-        content = getExchangeRate(msg)
-        line_bot_api.push_message(uid, TextSendMessage(content))
 
 @handler.add(FollowEvent)
 def handle_follow(event):
