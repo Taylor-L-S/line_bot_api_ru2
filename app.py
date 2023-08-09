@@ -33,12 +33,13 @@ def handle_message(event):
     msg = str(event.message.text).upper().strip()#使用者輸入的內容
     emsg = event.message.text
     
-    #####################說明選單 選單 油價查詢########################
+    ##################### 說明選單 選單 ################################
 
     if message_text == "@使用說明":
         about_us_event(event)
         Usage(event)
 
+    ##################### 油價查詢 ####################################
     if event.message.text == "想知道油價":
         content = oil_price()
         line_bot_api.reply_message(
