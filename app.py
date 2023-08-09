@@ -49,6 +49,12 @@ def handle_message(event):
             event.reply_token, 
             TextSendMessage(text = content)
         )
+
+
+    ###################### 股票區 #####################################
+    if re.match('匯率查詢', emsg):
+        message = show_Button()
+        line_bot_api.reply_message(event.reply_token, message)
     ###################### 股票區 #####################################
     if event.message.text == '@股價查詢':
         line_bot_api.push_message(uid, TextSendMessage("請輸入#加股票代碼......"))
@@ -106,10 +112,7 @@ def handle_message(event):
             TextSendMessage(text=content)
         )
 
-###################### 股票區 #####################################
-    if re.match('匯率查詢', emsg):
-        message = show_Button()
-        line_bot_api.reply_message(event.reply_token, message)
+
 
 
 
