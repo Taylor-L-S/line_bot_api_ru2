@@ -106,6 +106,13 @@ def handle_message(event):
             TextSendMessage(text=content)
         )
 
+###################### 股票區 #####################################
+    if re.match('幣別種類', emsg):
+        message = show_Button()
+        line_bot_api.reply_message(Event.reply_token, message)
+
+
+
 
 @handler.add(FollowEvent)
 def handle_follow(event):
