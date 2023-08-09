@@ -42,7 +42,7 @@ def handle_message(event):
         Usage(event)
 
     ##################### 油價查詢 ####################################
-    if event.message.text == "想知道油價":
+    if event.message.text == "油價查詢" or event.message.text == "@油價查詢" :
         content = oil_price()
         line_bot_api.reply_message(
             
@@ -66,9 +66,9 @@ def handle_message(event):
         line_bot_api.push_message(uid, TextSendMessage("加入股票代號"+stockNumber))
         content = write_my_stock(uid, user_name, stockNumber,msg[6:7], msg[7:])
         line_bot_api.push_message(uid, TextSendMessage(content))
-    # else:
-    #     content = write_my_stock(uid, user_name, stockNumber, "未設定", "未設定")
-    #     line_bot_api.push_message(uid, TextSendMessage(content))
+    else:
+        content = write_my_stock(uid, user_name, stockNumber, "未設定", "未設定")
+        line_bot_api.push_message(uid, TextSendMessage(content))
         return 0
     
     if (emsg.startswith('#')):
