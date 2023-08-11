@@ -42,7 +42,12 @@ def handle_message(event):
         message = show_Button()
         line_bot_api.reply_message(event.reply_token, message)
 
-    if re.match("換匯[A-Z]{3}/[A-Z{3}]", msg):
+    if re.match('查詢匯率[A-Z{3}]',msg):
+        msg = msg[4:]
+        content = showCurrency(msg)
+        line_bot_api.push_message(uid,TextSendMessage(content))
+
+    if re.match("換匯[A-Z]{3}/[A-Z{}]", msg):
         line_bot_api.push_message(uid, TextSendMessage("將為您做換匯計算..."))
         content = getExchangeRate(msg)
         line_bot_api.push_message(uid, TextSendMessage(content))
@@ -86,6 +91,13 @@ def handle_message(event):
     #     line_bot_api.push_message(uid, TextSendMessage(content))
         return 0
     
+    if re.match('股票清單',msg):
+        line_bot_api.push_message(uid, TextSendMessage('稍等一下，股票查詢中...'))
+        content = show_stock_setting(user_name, uid)
+        line_bot_api.push_message(uid, TextSendMessage(content))
+        return 0
+
+
     if (emsg.startswith('#')):
         text = emsg[1:]
         content =''
